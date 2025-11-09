@@ -11,7 +11,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0968a828-a986-41f9-8447-6ba1a4714716" name="Changes" comment="" />
+    <list default="true" id="0968a828-a986-41f9-8447-6ba1a4714716" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/HUD/WBP_HealthBar.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/ABP_PetTemplate.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/Fox/ABP_Fox.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/Fox/BS_FoxLocomotion.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/Wolf/ABP_Wolf.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/BP_AllyPet.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/BP_BasePet.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/BP_EnemyPet.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/HUD/HealthBarWidget.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/HUD/HealthBarWidgetComponent.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/AllyPet.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/BasePet.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/EnemyPet.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/HUD/HealthBarWidget.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/HUD/HealthBarWidgetComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/Pets/AllyPet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/Pets/BasePet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/Pets/EnemyPet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Zelcar/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Zelcar/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/HUD/BP_TrainerHUD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/HUD/BP_TrainerHUD.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/Pokemon.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Pokemon.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Zelcar/Zelcar.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Zelcar/Zelcar.Build.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,16 +43,27 @@
   <component name="DpaMonitoringSettings">
     <option name="firstShow" value="false" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://1" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/Components/HealthComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/Components/StaminaComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/HUD/GameHUD.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/HUD/HealthBarWidget.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/HUD/HealthBarWidgetComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/HUD/TrainerWidget.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/Pets/AllyPet.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/Pets/EnemyPet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/Components/HealthComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/Components/StaminaComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/HUD/GameHUD.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/HUD/HealthBarWidget.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/HUD/HealthBarWidgetComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/HUD/TrainerWidget.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/Pets/AllyPet.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/Pets/EnemyPet.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -39,22 +73,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;C/C++ Project.Zelcar.executor&quot;: &quot;Debug&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-Rider&quot;: &quot;Rider&quot;,
-    &quot;Notification.DoNotAsk-Rider&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "C/C++ Project.Zelcar.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Notification.DisplayName-DoNotAsk-Rider": "Rider",
+    "Notification.DoNotAsk-Rider": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="C/C++ Project.Zelcar">
     <configuration name="Zelcar" type="CppProject" factoryName="C++ Project">
       <configuration_1 setup="1">
@@ -169,7 +205,8 @@
       <workItem from="1762624488172" duration="892000" />
       <workItem from="1762625409868" duration="1773000" />
       <workItem from="1762627742273" duration="105000" />
-      <workItem from="1762627904304" duration="4033000" />
+      <workItem from="1762627904304" duration="4383000" />
+      <workItem from="1762675022302" duration="5622000" />
     </task>
     <servers />
   </component>
