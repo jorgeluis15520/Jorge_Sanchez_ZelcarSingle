@@ -7,8 +7,6 @@
 void AEnemyPet::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	InitializePet();
 }
 
 void AEnemyPet::Tick(float DeltaTime)
@@ -42,6 +40,7 @@ AActor* AEnemyPet::GetRandomPatrolTarget()
 void AEnemyPet::InitializePet()
 {
 	Super::InitializePet();
+	
 	GetCharacterMovement()->MaxWalkSpeed = PatrolSpeed;
 	
 	if (PatrolTarget)

@@ -6,6 +6,7 @@
 void AAllyPet::BeginPlay()
 {
 	Super::BeginPlay();
+	
 	if (APlayerController* PlayerController = GetWorld()->GetFirstPlayerController())
 	{
 		Trainer = PlayerController->GetPawn();

@@ -7,6 +7,7 @@
 #include "GameHUD.generated.h"
 
 class UTrainerWidget;
+class UPetInventoryWidget;
 
 UCLASS()
 class ZELCAR_API AGameHUD : public AHUD
@@ -19,10 +20,15 @@ protected:
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Game")
 	TSubclassOf<UTrainerWidget> TrainerWidgetClass;
+	UPROPERTY(EditDefaultsOnly, Category = "Game")
+	TSubclassOf<UPetInventoryWidget> PetInventoryWidgetClass;
 
 	UPROPERTY()
 	UTrainerWidget* TrainerWidget;
+	UPROPERTY()
+	UPetInventoryWidget* PetInventoryWidget;
 
 public:
 	FORCEINLINE UTrainerWidget* GetTrainerWidget() { return TrainerWidget; }	
+	FORCEINLINE UPetInventoryWidget* GetPetInventoyWidget() { return PetInventoryWidget; }	
 };

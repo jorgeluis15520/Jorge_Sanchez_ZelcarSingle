@@ -3,6 +3,7 @@
 
 #include "HUD/GameHUD.h"
 #include "HUD/TrainerWidget.h"
+#include "PetInventory/PetInventoryWidget.h"
 
 void AGameHUD::BeginPlay()
 {
@@ -12,10 +13,20 @@ void AGameHUD::BeginPlay()
 	if (World)
 	{
 		APlayerController* Controller = World->GetFirstPlayerController();
-		if (Controller && TrainerWidgetClass)
+		if (Controller)
 		{
-			TrainerWidget = CreateWidget<UTrainerWidget>(Controller, TrainerWidgetClass);
-			TrainerWidget->AddToViewport();
+			if (TrainerWidgetClass)
+			{
+				TrainerWidget = CreateWidget<UTrainerWidget>(Controller, TrainerWidgetClass);
+				TrainerWidget->AddToViewport();
+			}
+
+			if (PetInventoryWidgetClass)
+			{
+				PetInventoryWidget = CreateWidget<UPetInventoryWidget>(Controller, PetInventoryWidgetClass);
+				PetInventoryWidget->AddToViewport();
+				PetInventoryWidget->SetVisibility(ESlateVisibility::Hidden);
+			}
 		}
 	}
 	

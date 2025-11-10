@@ -12,28 +12,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0968a828-a986-41f9-8447-6ba1a4714716" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/HUD/WBP_HealthBar.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/ABP_PetTemplate.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/Fox/ABP_Fox.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/Fox/BS_FoxLocomotion.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/Wolf/ABP_Wolf.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/BP_AllyPet.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/BP_BasePet.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/BP_EnemyPet.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/HUD/HealthBarWidget.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/HUD/HealthBarWidgetComponent.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/AllyPet.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/BasePet.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/EnemyPet.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/HUD/HealthBarWidget.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/HUD/HealthBarWidgetComponent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/Pets/AllyPet.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/Pets/BasePet.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/Pets/EnemyPet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/Trainer/Inputs/Actions/IA_Attack.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/Trainer/Inputs/Actions/IA_Capture.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/Trainer/Inputs/Actions/IA_Inventory.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/Trainer/Inputs/Actions/IA_InventoryUI.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/Trainer/Inputs/IMC_TrainerUI.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Inventory/WBP_Inventory.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Inventory/WBP_PetSlotWidget.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/Crow/ABP_Crow.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/Crow/BS_Crow_Locomotion.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/DeerDoe/ABP_DeerDoe.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/DeerDoe/BS_DeerDoe_Locomotion.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/DeerStag/ABP_DeerStag.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/DeerStag/BS_DeerStag_Locomotion.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/Pig/ABP_Pig.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Animations/Pig/BS_PigLocomotion.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Data/DA_Pet_Crow.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Data/DA_Pet_DeerDoe.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Data/DA_Pet_DeerStag.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Data/DA_Pet_Fox.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Data/DA_Pet_Pig.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/Data/DA_Pet_Wolf.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/Components/PetInventoyComponent.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/PetInventory/PetInventoryWidget.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/PetInventory/PetInventoyItem.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/PetInventory/PetSlotWidget.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/PetDataAsset.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/Components/PetInventoyComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/PetInventory/PetInventoryWidget.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/PetInventory/PetInventoyItem.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/PetInventory/PetSlotWidget.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Zelcar/Public/Pets/PetDataAsset.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Zelcar/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Zelcar/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/HUD/BP_TrainerHUD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/HUD/BP_TrainerHUD.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/HUD/BP_GameHUD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/HUD/BP_GameHUD.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/Trainer/BP_Trainer.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/Trainer/BP_Trainer.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/Trainer/Inputs/IMC_Trainer.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/Trainer/Inputs/IMC_Trainer.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Pets/BP_AllyPet.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Pets/BP_AllyPet.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/Pokemon.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Pokemon.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Zelcar/Zelcar.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Zelcar/Zelcar.Build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Zelcar/Private/Characters/Trainer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Zelcar/Private/Characters/Trainer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Zelcar/Private/HUD/GameHUD.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Zelcar/Private/HUD/GameHUD.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/AllyPet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/AllyPet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/BasePet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/BasePet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/EnemyPet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Zelcar/Private/Pets/EnemyPet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Zelcar/Public/Characters/Trainer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Zelcar/Public/Characters/Trainer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Zelcar/Public/HUD/GameHUD.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Zelcar/Public/HUD/GameHUD.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Zelcar/Public/Pets/BasePet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Zelcar/Public/Pets/BasePet.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,23 +70,37 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://1" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UE_5.3/Engine/Source/Runtime/Core/Public/Delegates/DelegateSignatureImpl.inl" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UE_5.3/Engine/Source/Runtime/Core/Public/Templates/Invoke.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UE_5.3/Engine/Source/Runtime/Core/Public/UObject/ScriptDelegates.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UE_5.3/Engine/Source/Runtime/Engine/Classes/GameFramework/PlayerController.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/Components/HealthComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/Components/PetInventoyComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/Components/StaminaComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/HUD/GameHUD.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/HUD/HealthBarWidget.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/HUD/HealthBarWidgetComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/HUD/TrainerWidget.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/PetInventory/PetInventoyItem.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/PetInventory/PetSlotWidget.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/Pets/AllyPet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/Pets/EnemyPet.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Private/Pets/PetDataAsset.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/Components/HealthComponent.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/Components/PetInventoyComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/Components/StaminaComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/HUD/GameHUD.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/HUD/HealthBarWidget.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/HUD/HealthBarWidgetComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/HUD/TrainerWidget.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/PetInventory/PetInventoyItem.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/PetInventory/PetSlotWidget.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/Pets/AllyPet.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/Pets/EnemyPet.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Zelcar/Public/Pets/PetDataAsset.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -207,6 +244,8 @@
       <workItem from="1762627742273" duration="105000" />
       <workItem from="1762627904304" duration="4383000" />
       <workItem from="1762675022302" duration="5622000" />
+      <workItem from="1762724903297" duration="18887000" />
+      <workItem from="1762745695319" duration="674000" />
     </task>
     <servers />
   </component>

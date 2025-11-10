@@ -7,6 +7,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "HUD/HealthBarWidgetComponent.h"
 #include "Navigation/PathFollowingComponent.h"
+#include "Pets/PetDataAsset.h"
+#include "Components/SkeletalMeshComponent.h"
 
 ABasePet::ABasePet()
 {
@@ -28,7 +30,9 @@ ABasePet::ABasePet()
 void ABasePet::BeginPlay()
 {
 	Super::BeginPlay();
+	
 	PetAIController = Cast<AAIController>(GetController());
+	InitializePet();
 }
 
 void ABasePet::Tick(float DeltaTime)
@@ -55,6 +59,35 @@ void ABasePet::MoveToTarget(AActor* Target, float AcceptanceRadius)
 
 void ABasePet::InitializePet()
 {
+	ApplyPetData();
+}
+
+void ABasePet::ApplyPetData()
+{
+	if (!PetData) return;
+
+	USkeletalMeshComponent* MeshComponent = GetMesh();
+	if (!MeshComponent) return;
+	
+	if (PetData->SkeletalMesh)
+	{
+		MeshComponent->SetSkeletalMesh(PetData->SkeletalMesh);
+	}
+
+	if (PetData->AnimationBlueprint)
+	{
+		MeshComponent->SetAnimInstanceClass(PetData->AnimationBlueprint);
+		MeshComponent->InitAnim(true);
+	}
+}
+
+void ABasePet::TakeDamage(float DamageAmount)
+{
+	if (HealthComponent)
+	{
+		HealthComponent->ReceiveDamage(DamageAmount);
+		HealthBarWidgetComponent->SetHealthBarPercent(HealthComponent->GetHealthPercentage());
+	}
 }
 
 
