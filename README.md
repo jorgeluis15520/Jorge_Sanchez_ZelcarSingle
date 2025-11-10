@@ -17,3 +17,5 @@ K-> Capturar <br />
 <br />
 -- Inventario --<br />
 Al hacer click en un slot aparecera la mascota selecionada al lado tuyo <br />
+
+Video: https://drive.google.com/file/d/1yPCBqPrpGnJb6g2v6gg7muVkJv0hmz-K/view?usp=sharing
