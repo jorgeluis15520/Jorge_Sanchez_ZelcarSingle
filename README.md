@@ -19,12 +19,12 @@ K-> Capturar <br />
 Al hacer click en un slot aparecera la mascota selecionada al lado tuyo <br />
 
 Video: https://drive.google.com/file/d/1yPCBqPrpGnJb6g2v6gg7muVkJv0hmz-K/view?usp=sharing  <br />
-
+ <br />
 -- Agregar Mascota -- <br />
 Para agregar una mascota nueva se debe crear un DataAsset que herede de "PetDataAsset" <br />
 Se debe completar los campos: ID, Name, SkeletalMesh y AnimationInstance <br />
-
--- Crear un Anim Instance --
+ <br />
+-- Crear un Anim Instance --<br />
 Para agregar un nuevo anim instance para una mascota, selection el "ABP_PetTemplate" <br />
 Crear un blueprint child skeletal que herede de ese template con el skeletal de la nueva mascota <br />
 Para el AnimationBlueprint que acabas de crear es necesario que crees un BlendSpaceAnimation <br />
