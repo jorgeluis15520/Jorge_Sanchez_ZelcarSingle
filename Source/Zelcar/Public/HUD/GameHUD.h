@@ -6,6 +6,7 @@
 #include "GameFramework/HUD.h"
 #include "GameHUD.generated.h"
 
+class UCombatWidget;
 class UTrainerWidget;
 class UPetInventoryWidget;
 
@@ -22,13 +23,21 @@ private:
 	TSubclassOf<UTrainerWidget> TrainerWidgetClass;
 	UPROPERTY(EditDefaultsOnly, Category = "Game")
 	TSubclassOf<UPetInventoryWidget> PetInventoryWidgetClass;
+	UPROPERTY(EditDefaultsOnly, Category = "Game")
+	TSubclassOf<UCombatWidget> CombatWidgetClass;
 
 	UPROPERTY()
 	UTrainerWidget* TrainerWidget;
 	UPROPERTY()
 	UPetInventoryWidget* PetInventoryWidget;
+	UPROPERTY()
+	UCombatWidget* CombatWidget;
 
 public:
 	FORCEINLINE UTrainerWidget* GetTrainerWidget() { return TrainerWidget; }	
-	FORCEINLINE UPetInventoryWidget* GetPetInventoyWidget() { return PetInventoryWidget; }	
+	FORCEINLINE UPetInventoryWidget* GetPetInventoyWidget() { return PetInventoryWidget; }
+	FORCEINLINE UCombatWidget* GetCombatWidget() { return CombatWidget; }
+
+	void ShowCombatWidget();
+	void HideCombatWidget();
 };

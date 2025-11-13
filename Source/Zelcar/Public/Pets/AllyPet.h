@@ -26,4 +26,9 @@ private:
 
 	FTimerHandle FollowTimer;
 	void FollowTrainer();
+
+public:
+	virtual void StartCombat() override;
+	virtual void EndCombatByEscape() override;
+	virtual void EndCombatByCapture() override;
 };

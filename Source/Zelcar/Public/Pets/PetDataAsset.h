@@ -23,4 +23,6 @@ public:
 	TObjectPtr<USkeletalMesh> SkeletalMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Pet Pet Appearance")
 	TSubclassOf<UAnimInstance> AnimationBlueprint;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Pet Abilities")
+	TObjectPtr<UAnimMontage> BasicAttackMontage;
 };

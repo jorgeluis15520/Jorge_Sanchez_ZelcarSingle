@@ -9,6 +9,8 @@
 #include "Navigation/PathFollowingComponent.h"
 #include "Pets/PetDataAsset.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "AbilitiesSystem/PetAbilitySystemComponent.h"
+#include "Animation/AnimMontage.h"
 
 ABasePet::ABasePet()
 {
@@ -17,7 +19,8 @@ ABasePet::ABasePet()
 	HealthComponent = CreateDefaultSubobject<UHealthComponent>(FName("HealthComponent"));
 	HealthBarWidgetComponent = CreateDefaultSubobject<UHealthBarWidgetComponent>(FName("HealthBarWidgetComponent"));
 	HealthBarWidgetComponent->SetupAttachment(GetRootComponent());
-
+	PetAbilitySystemComponent = CreateDefaultSubobject<UPetAbilitySystemComponent>(FName("PetAbilitySystem Component"));
+	
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
@@ -60,6 +63,7 @@ void ABasePet::MoveToTarget(AActor* Target, float AcceptanceRadius)
 void ABasePet::InitializePet()
 {
 	ApplyPetData();
+	HideHealthBar();
 }
 
 void ABasePet::ApplyPetData()
@@ -77,11 +81,15 @@ void ABasePet::ApplyPetData()
 	if (PetData->AnimationBlueprint)
 	{
 		MeshComponent->SetAnimInstanceClass(PetData->AnimationBlueprint);
-		MeshComponent->InitAnim(true);
+	}
+
+	if (PetData->BasicAttackMontage)
+	{
+		AttackMontage = PetData->BasicAttackMontage;
 	}
 }
 
-void ABasePet::TakeDamage(float DamageAmount)
+void ABasePet::ApplyDamage(float DamageAmount)
 {
 	if (HealthComponent)
 	{
@@ -90,4 +98,69 @@ void ABasePet::TakeDamage(float DamageAmount)
 	}
 }
 
+UAbilitySystemComponent* ABasePet::GetAbilitySystemComponent() const
+{
+	return PetAbilitySystemComponent;
+}
 
+void ABasePet::Attack(ABasePet* PetTarget)
+{
+	if (PetState != ECharacterState::ECS_Unoccupied) return;
+	
+	PetState = ECharacterState::ECS_Occupied;
+	if (AttackMontage)
+	{
+		UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+		if (AnimInstance) AnimInstance->Montage_Play(AttackMontage);
+	}
+	
+	if (PetTarget)
+	{
+		PetEnemyTarget = PetTarget;
+	}
+}
+
+void ABasePet::AttackEnd()
+{
+	if (PetEnemyTarget)
+	{
+		PetEnemyTarget->ApplyDamage(10.f);
+		PetEnemyTarget = nullptr;
+	}
+	PetState = ECharacterState::ECS_Unoccupied;
+}
+
+void ABasePet::ShowHealthBar()
+{
+	if (HealthBarWidgetComponent)
+	{
+		HealthBarWidgetComponent->SetVisibility(true);
+	}
+}
+
+void ABasePet::HideHealthBar()
+{
+	if (HealthBarWidgetComponent)
+	{
+		HealthBarWidgetComponent->SetVisibility(false);
+	}
+}
+
+void ABasePet::StartCombat()
+{
+	bInCombat = true;
+	PetAIController->StopMovement();
+	ShowHealthBar();
+}
+
+void ABasePet::EndCombatByEscape()
+{
+	bInCombat = false;
+	HideHealthBar();
+}
+
+void ABasePet::EndCombatByCapture()
+{
+	bInCombat = false;
+	HideHealthBar();
+}

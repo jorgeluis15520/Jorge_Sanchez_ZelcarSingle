@@ -13,9 +13,12 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "HUD/GameHUD.h"
 #include "HUD/TrainerWidget.h"
+#include "HUD/CombatWidget.h"
 #include "PetInventory/PetInventoryWidget.h"
 #include "Pets/AllyPet.h"
 #include "Pets/EnemyPet.h"
+#include "Components/CapsuleComponent.h"
+
 
 // Sets default values
 ATrainer::ATrainer()
@@ -50,8 +53,13 @@ ATrainer::ATrainer()
 
 	SphereComponent = CreateDefaultSubobject<USphereComponent>(FName("SphereComponent"));
 	SphereComponent->SetupAttachment(GetRootComponent());
+	SphereComponent->SetCollisionEnabled(ECollisionEnabled::Type::QueryOnly);
+	SphereComponent->SetCollisionResponseToAllChannels(ECR_Ignore);
+	SphereComponent->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECR_Overlap);
+
+	GetCapsuleComponent()->SetCollisionObjectType(ECollisionChannel::ECC_Pawn);
+	GetCapsuleComponent()->SetGenerateOverlapEvents(true);
 	
-	AutoPossessPlayer = EAutoReceiveInput::Type::Player0;
 }
 
 // Called when the game starts or when spawned
@@ -65,7 +73,7 @@ void ATrainer::BeginPlay()
 	SpawnAllyPet(DefaultPet);
 
 	SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &ATrainer::OnSphereOverlap);
-	SphereComponent->OnComponentEndOverlap.AddDynamic(this, &ATrainer::OnSphereEndOverlap);
+	//SphereComponent->OnComponentEndOverlap.AddDynamic(this, &ATrainer::OnSphereEndOverlap);
 }
 
 void ATrainer::Tick(float DeltaTime)
@@ -97,9 +105,10 @@ void ATrainer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Started, this, &ATrainer::RunStart);
 		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Completed, this, &ATrainer::RunEnd);
 		EnhancedInputComponent->BindAction(InventoryAction, ETriggerEvent::Completed, this, &ATrainer::TogglePetInventory);
-		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Completed, this, &ATrainer::Attack);
+		EnhancedInputComponent->BindAction(PetAttackAction, ETriggerEvent::Completed, this, &ATrainer::OrderPetBasicAttack);
 		EnhancedInputComponent->BindAction(CaptureAction, ETriggerEvent::Completed, this, &ATrainer::Capture);
 		EnhancedInputComponent->BindAction(CloseInventoryAction, ETriggerEvent::Completed, this, &ATrainer::TogglePetInventory);
+		EnhancedInputComponent->BindAction(EscapeAction, ETriggerEvent::Completed, this, &ATrainer::EscapeCombat);
 	}
 }
 
@@ -156,31 +165,27 @@ void ATrainer::Jump()
 	Super::Jump();
 }
 
-void ATrainer::Attack()
+void ATrainer::OrderPetBasicAttack()
 {
-	if (TargetEnemy)
+	if (bIsCapturing || bIsInventoryOpen) return;
+	
+	if (CurrentAllyPet && TargetEnemy)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("DamageEnemy"));
-		TargetEnemy->TakeDamage(10.f);
+		CurrentAllyPet->Attack(TargetEnemy);
 	}
 }
 
 void ATrainer::Capture()
 {
+	if (bIsCapturing || bIsInventoryOpen) return;
 	if (TargetEnemy)
 	{
-		float HealthRatio = TargetEnemy->GetHealth();
-		float CaptureChance = FMath::Clamp(1.f - HealthRatio, 0.05f, 0.95f);
-		float RandomRoll = FMath::FRand();
-		bool bCaptured = RandomRoll <= CaptureChance;
-		if (bCaptured)
+		bIsCapturing = true;
+		GetWorldTimerManager().SetTimer(CaptureTimer, this, &ATrainer::EndCapture, TimeToCapture);
+		if (CombatWidget)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Pet Captured Success (Chance: %2f / Roll: %2f)"), CaptureChance, RandomRoll);
-			PetInventoryComponent->AddPet(TargetEnemy->GetData());
-		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Pet Captured Fail (Chance: %2f / Roll: %2f)"), CaptureChance, RandomRoll);
+			CombatWidget->ShowFeedbackOverlay();
+			CombatWidget->SetFeedbackText("Capturando ...");
 		}
 	}
 }
@@ -221,7 +226,7 @@ void ATrainer::InitializeHUD()
 {
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
 	{
-		AGameHUD* GameHUD = Cast<AGameHUD>(PlayerController->GetHUD());
+		GameHUD = Cast<AGameHUD>(PlayerController->GetHUD());
 		if (GameHUD)
 		{
 			TrainerWidget = GameHUD->GetTrainerWidget();
@@ -232,6 +237,7 @@ void ATrainer::InitializeHUD()
 			}
 			
 			PetInventoryWidget = GameHUD->GetPetInventoyWidget();
+			CombatWidget = GameHUD->GetCombatWidget();
 		}
 	}
 }
@@ -306,15 +312,93 @@ void ATrainer::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
 	if (AEnemyPet* EnemyPet = Cast<AEnemyPet>(OtherActor))
 	{
 		TargetEnemy = EnemyPet;
+		StartCombat();
 	}
 }
 
-void ATrainer::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+// void ATrainer::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+// 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+// {
+// 	AEnemyPet* EnemyPet = Cast<AEnemyPet>(OtherActor);
+// 	if (EnemyPet && TargetEnemy != nullptr)
+// 	{
+// 		TargetEnemy = nullptr;
+// 	}
+// }
+
+void ATrainer::StartCombat()
 {
-	AEnemyPet* EnemyPet = Cast<AEnemyPet>(OtherActor);
-	if (EnemyPet && TargetEnemy != nullptr)
+	if (bInCombat) return;
+
+	bInCombat = true;
+	
+	if (TargetEnemy && CurrentAllyPet)
 	{
-		TargetEnemy = nullptr;
+		TargetEnemy->SetPetTarget(CurrentAllyPet);
+		TargetEnemy->StartCombat();
+		CurrentAllyPet->StartCombat();
 	}
+
+	if (GameHUD)
+	{
+		GameHUD->ShowCombatWidget();
+	}
+
+	if (bIsInventoryOpen) TogglePetInventory();
+
+	SphereComponent->SetCollisionEnabled(ECollisionEnabled::Type::NoCollision);
+}
+
+void ATrainer::EscapeCombat()
+{
+	if (!bInCombat || bIsInventoryOpen) return;
+	
+	if (CurrentAllyPet) CurrentAllyPet->EndCombatByEscape();
+	if (TargetEnemy) TargetEnemy->EndCombatByEscape();
+	TargetEnemy = nullptr;
+	bInCombat = false;
+
+	if (bIsCapturing) return;
+	
+	if (GameHUD) GameHUD->HideCombatWidget();
+	GetWorldTimerManager().SetTimer(AvoidCombatTimer, this, &ATrainer::EndAvoidCombat, AvoidCombatCooldown);
+}
+
+void ATrainer::EndAvoidCombat()
+{
+	SphereComponent->SetCollisionEnabled(ECollisionEnabled::Type::QueryOnly);
+}
+
+void ATrainer::EndCapture()
+{
+	float HealthRatio = TargetEnemy->GetHealth();
+	float CaptureChance = FMath::Clamp(1.f - HealthRatio, 0.05f, 0.95f);
+	float RandomRoll = FMath::FRand();
+	bool bCaptured = RandomRoll <= CaptureChance;
+	if (bCaptured)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Pet Captured Success (Chance: %2f / Roll: %2f)"), CaptureChance, RandomRoll);
+		PetInventoryComponent->AddPet(TargetEnemy->GetData());
+		TargetEnemy->EndCombatByCapture();
+		CurrentAllyPet->EndCombatByCapture();
+		if (CombatWidget) CombatWidget->SetFeedbackText("Capturado");
+		TargetEnemy = nullptr;
+		GetWorldTimerManager().SetTimer(ShowCaptureTextTimer, this, &ATrainer::EndShowCaptureText, TimeToShowCaptureText);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Pet Captured Fail (Chance: %2f / Roll: %2f)"), CaptureChance, RandomRoll);
+		if (CombatWidget) CombatWidget->SetFeedbackText("Escapo");
+		EscapeCombat();
+		GetWorldTimerManager().SetTimer(ShowCaptureTextTimer, this, &ATrainer::EndShowCaptureText, TimeToShowCaptureText);
+	}
+	bInCombat = false;
+}
+
+void ATrainer::EndShowCaptureText()
+{
+	GetWorldTimerManager().SetTimer(AvoidCombatTimer, this, &ATrainer::EndAvoidCombat, AvoidCombatCooldown);
+	if (CombatWidget) CombatWidget->HideFeedBackOverlay();
+	if (GameHUD) GameHUD->HideCombatWidget();
+	bIsCapturing = false;
 }

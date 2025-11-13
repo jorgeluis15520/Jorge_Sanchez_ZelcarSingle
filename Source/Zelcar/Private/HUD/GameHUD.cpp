@@ -4,6 +4,7 @@
 #include "HUD/GameHUD.h"
 #include "HUD/TrainerWidget.h"
 #include "PetInventory/PetInventoryWidget.h"
+#include "HUD/CombatWidget.h"
 
 void AGameHUD::BeginPlay()
 {
@@ -18,16 +19,40 @@ void AGameHUD::BeginPlay()
 			if (TrainerWidgetClass)
 			{
 				TrainerWidget = CreateWidget<UTrainerWidget>(Controller, TrainerWidgetClass);
-				TrainerWidget->AddToViewport();
+				TrainerWidget->AddToViewport(0);
 			}
 
 			if (PetInventoryWidgetClass)
 			{
 				PetInventoryWidget = CreateWidget<UPetInventoryWidget>(Controller, PetInventoryWidgetClass);
-				PetInventoryWidget->AddToViewport();
+				PetInventoryWidget->AddToViewport(2);
 				PetInventoryWidget->SetVisibility(ESlateVisibility::Hidden);
+			}
+
+			if (CombatWidgetClass)
+			{
+				CombatWidget = CreateWidget<UCombatWidget>(Controller, CombatWidgetClass);
+				CombatWidget->AddToViewport(1);
+				CombatWidget->HideFeedBackOverlay();
+				CombatWidget->SetVisibility(ESlateVisibility::Hidden);
 			}
 		}
 	}
 	
+}
+
+void AGameHUD::ShowCombatWidget()
+{
+	if (CombatWidget)
+	{
+		CombatWidget->SetVisibility(ESlateVisibility::Visible);
+	}
+}
+
+void AGameHUD::HideCombatWidget()
+{
+	if (CombatWidget)
+	{
+		CombatWidget->SetVisibility(ESlateVisibility::Hidden);
+	}
 }

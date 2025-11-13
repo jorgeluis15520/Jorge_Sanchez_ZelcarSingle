@@ -7,6 +7,8 @@
 #include "GameFramework/Character.h"
 #include "Trainer.generated.h"
 
+class AGameHUD;
+class UCombatWidget;
 class UEnhancedInputLocalPlayerSubsystem;
 class UPetInventoryWidget;
 class UPetInventoyComponent;
@@ -48,9 +50,11 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> InventoryAction;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	TObjectPtr<UInputAction> AttackAction;
+	TObjectPtr<UInputAction> PetAttackAction;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> CaptureAction;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> EscapeAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputMappingContext> TrainerUIMappingContext;
@@ -62,8 +66,9 @@ protected:
 	void RunStart();
 	void RunEnd();
 	virtual void Jump() override;
-	void Attack();
+	void OrderPetBasicAttack();
 	void Capture();
+	void EscapeCombat();
 private:	
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCameraComponent> Camera;
@@ -86,6 +91,10 @@ private:
 	
 	UPROPERTY()
 	UTrainerWidget* TrainerWidget;
+	UPROPERTY()
+	UCombatWidget* CombatWidget;
+	UPROPERTY()
+	AGameHUD* GameHUD;
 
 	UPROPERTY(EditAnywhere, Category = "Pet")
 	TObjectPtr<UPetDataAsset> DefaultPet;
@@ -126,7 +135,26 @@ private:
 	void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 		int32 OtherBodyIndex, bool bFrownSweep, const FHitResult& SweepResult);
 	
-	UFUNCTION()
-	void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
-		int32 OtherBodyIndex);
+	// UFUNCTION()
+	// void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
+	// 	int32 OtherBodyIndex);
+
+	void StartCombat();
+	bool bInCombat = false;
+
+	UPROPERTY(EditAnywhere)
+	float AvoidCombatCooldown = 5.f;
+	FTimerHandle AvoidCombatTimer;
+	void EndAvoidCombat();
+
+	UPROPERTY(EditAnywhere)
+	float TimeToCapture = 4.f;
+	FTimerHandle CaptureTimer;
+	void EndCapture();
+	bool bIsCapturing = false;
+
+	UPROPERTY(EditAnywhere)
+	float TimeToShowCaptureText = 1.5f;
+	FTimerHandle ShowCaptureTextTimer;
+	void EndShowCaptureText();
 };

@@ -18,10 +18,30 @@ void AAllyPet::BeginPlay()
 void AAllyPet::FollowTrainer()
 {
 	if (Trainer == nullptr || PetAIController == nullptr) return;
-
+	if (bInCombat) return;
+	
 	const float Distance = FVector::Dist(GetActorLocation(), Trainer->GetActorLocation());
 	if (Distance > FollowDistance)
 	{
 		MoveToTarget(Trainer, AcceptanceRadius);
 	}
+}
+
+void AAllyPet::StartCombat()
+{
+	Super::StartCombat();
+
+	GetWorldTimerManager().ClearTimer(FollowTimer);
+}
+
+void AAllyPet::EndCombatByEscape()
+{
+	Super::EndCombatByEscape();
+	GetWorldTimerManager().SetTimer(FollowTimer, this, &AAllyPet::FollowTrainer, 0.5f, true);
+}
+
+void AAllyPet::EndCombatByCapture()
+{
+	Super::EndCombatByCapture();
+	GetWorldTimerManager().SetTimer(FollowTimer, this, &AAllyPet::FollowTrainer, 0.5f, true);
 }
